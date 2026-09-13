@@ -203,6 +203,7 @@ except ValueError:
 
 
 # %% [markdown]
+# Exercício 6
 # numero = 10
 # jogador = "Rodrygo"
 #

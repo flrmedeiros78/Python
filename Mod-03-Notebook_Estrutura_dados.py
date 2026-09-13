@@ -167,7 +167,7 @@ for chave, valor in resumo_aluno.items():
 # Desafio: não permita que o usuário cadastre uma figurinha vazia.
 
 # %%
-# Exercicio 01 - ok
+# Exercicio 01 - Exercício 1 – Cadastro de Figurinhas - ok
 fig_cad = []
 
 while True:
@@ -514,7 +514,7 @@ for jogador in info_jogadores:
 if qtd_jogadores > 0:
     media = total / qtd_jogadores     
     print("A Média de gol dos jogadores cadastrados é :",media)
-   
+
 
 # %% [markdown]
 # Exercício 6 – Desafio Final: Sistema da Copa do Mundo
@@ -550,4 +550,105 @@ if qtd_jogadores > 0:
 # Utilize len() para calcular a quantidade de partidas cadastradas.
 
 # %%
-# teste andrea
+# Exercício 6 – Desafio Final: Sistema da Copa do Mundo
+
+info_part_cad = []
+
+print(
+" ======== Menu ========","\n"
+"Enter - Para Iniciar Cadastro","\n"
+"Sair  - Para Encerrar","\n"
+"========================"
+)
+
+while True:
+    qtd_part_cad = input("Para iniciar o Cadastro da partidas da Copa do Mundo Presssione 'ENTER', e para encerrar Digite 'SAIR' :")
+    if qtd_part_cad.lower() == 'sair':
+        break
+    try:
+        sel_mand = input("Digite a Nome da Seleção Mandante: ").strip()
+        qtd_gols_sel_mand = int(input("Digite a quantidade de Gols da Seleção Mandante:"))
+        sel_vist = input("Digite o Nome da Seleção Visitante: ").strip()        
+        qtd_gols_sel_vist = int(input("Digite a quantidade de Gols da Seleção Visitante:"))
+                
+        if qtd_gols_sel_mand < 0:
+            print("Favor, Digite um numero inteiro maior que Zero:")
+            continue        
+        if qtd_gols_sel_vist < 0:
+            print("Favor, Digite um numero inteiro maior que Zero:")
+            continue
+        # Valida qual seleção 
+        if qtd_gols_sel_mand > qtd_gols_sel_vist:
+            print("======================================================================")
+            print('Vitória do Mandante  ==>',sel_mand)
+        elif qtd_gols_sel_mand < qtd_gols_sel_vist:
+            print('Vitória do Visitante ==>',sel_vist)
+            print("======================================================================")
+        else:
+           
+            print(f"As Partidas terminaram Empatadas emtre :",sel_mand,"=>", qtd_gols_sel_mand, " x ", qtd_gols_sel_vist,"<=", sel_vist)
+            print("======================================================================")
+
+        # Armazena dados do dicionário na lista
+        partidas={
+            'sel_mand': sel_mand,
+            'qtd_gols_sel_mand': qtd_gols_sel_mand,
+            'sel_vist': sel_vist,
+            'qtd_gols_sel_vist': qtd_gols_sel_vist,               
+        }
+        info_part_cad.append(partidas)
+            
+    except ValueError:
+            print('Digite um valor válido!')
+            
+# A quantidade de partidas cadastradas.
+print("================ A quantidade de partidas cadastradas ================")
+if len(info_part_cad) > 0 :
+    print(f"Quantidade de partidas cadastradas:", len(info_part_cad))
+print("======================================================================")
+
+# Todas as partidas registradas.
+print("================ Todas as partidas registradas =======================")
+for partidas in info_part_cad:
+    print(f"Seleção Mandanet : {partidas['sel_mand']} - {partidas['qtd_gols_sel_mand']}")
+    print(f"Seleção Visitante : {partidas['sel_vist']} - {partidas['qtd_gols_sel_vist']}")
+    print("")
+print("======================================================================")
+
+# Quantas partidas terminaram empatadas.
+print("================ Quantas partidas terminaram empatadas ===============")
+if len(info_part_cad)>0:
+    qtd_empate = 0
+    for empate in info_part_cad:
+        if empate['qtd_gols_sel_mand'] == empate['qtd_gols_sel_vist']:
+            qtd_empate  += 1 
+    print("A Quantidade de empates :",qtd_empate)
+print("======================================================================")
+
+# A partida com o maior número total de gols.
+print("================ A partida com o maior número total de gols ==========")
+if len(info_part_cad)>0:
+    maior = info_part_cad[0]
+    for soma in info_part_cad:
+        total_atual = soma['qtd_gols_sel_mand'] + soma['qtd_gols_sel_vist']
+        total_maior = maior['qtd_gols_sel_mand'] + maior['qtd_gols_sel_vist']
+        if total_atual > total_maior:
+            maior = soma
+    print(f"Seleção Mandanet : {maior['sel_mand']} - {maior['qtd_gols_sel_mand']}")
+    print(f"Seleção Visitante : {maior['sel_vist']} - {maior['qtd_gols_sel_vist']}")
+    print(f"Total: {maior['qtd_gols_sel_mand'] + maior['qtd_gols_sel_vist']}") 
+   
+
+print("======================================================================")
+# A Média de gols por partida.
+print("================ A Média de gols por partida =========================")
+if len(info_part_cad)>0:
+    total = 0
+    for med_gols in info_part_cad:
+        total = total + (med_gols['qtd_gols_sel_mand'] + med_gols['qtd_gols_sel_vist'])
+    media = round(total / len(info_part_cad),2)
+    print("A média de gol: ",media)
+    
+
+
+
