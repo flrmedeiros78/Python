@@ -36,7 +36,7 @@
 # %%
 # Exercício 1 – Argumentos posicionais
 def apresentar_jogador(
-    nome= "Marta",git
+    nome= "Marta",
     posicao= "Atacante"
 )-> str:
     print(f"Jogadora: {nome} | Posição: {posicao}")
