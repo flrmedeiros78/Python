@@ -245,8 +245,6 @@ lsitar_jogadores("Marta\n")
 lsitar_jogadores("Marta", "Vini Jr", "Alisson")
 
 
-
-
 # %% [markdown]
 # Exercício 9 – Trabalhando com os valores de *args
 #
@@ -294,7 +292,6 @@ def convocar_selecao(pais, *jogadores):
         print(f"{pais} - {jogador}")
 
 convocar_selecao("Brasil","Alisson","Marquinhos","Bruno Guimarães","Vini Jr")
-
 
 
 # %% [markdown]
@@ -613,6 +610,21 @@ apresentar_jogador(**jogador2)
 # %%
 # Exercício 17 – *args recebendo e * desempacotando
 
+def calcular_total_gols(*qtd_num:int)->int: # recebe vários dados dentro de qtd_num
+    """
+        Calula o total de gols:
+    *Args
+        qtd_num: Recebe uma quantidade de números variados    
+    """
+    return sum(qtd_num)
+    
+primeiro_tempo=[1,2,1]
+segundo_tempo=[2,1]    
+    
+total=calcular_total_gols(*primeiro_tempo, *segundo_tempo) # Desempacota as variavel primeiro e segndo tempo.
+print(total)
+# def calcular_total_gols(*gols):... : aqui está recebendo vários argumentos e agrupa um uma tupla (gols)
+# calcular_total_gols(*primeiro_tempo) : Aqui está desempacotando a lista . 
 
 
 
@@ -643,6 +655,25 @@ apresentar_jogador(**jogador2)
 
 # %%
 # Exercício 18 – Parâmetros somente posicionais com /
+
+def registrar_placar(time_a: str, time_b: str, /, gols_a: int, gols_b: int) -> str:
+    """
+        Registra placar do jogo:
+    Args:
+        time_a: Nome do time A
+        time_b: Nome do time B
+        /     : Indica que parametros a ESQUERDA serão obrigatóriamente POSICIONAL
+        gols_a: Quantidade de gols do time A
+        gols_b: Quantidade de gols do time B
+    """
+    return(f"{time_a} x {time_b} - {gols_a} x {gols_b}")
+   
+resultado = registrar_placar("Brasil","Argentina",gols_a=2,gols_b=1)
+# resultado = registrar_placar(time_a = "Brasil", time_b = "Argentina",gols_a=2,gols_b=1)
+print(resultado)
+
+# TypeError: registrar_placar() got some positional-only arguments passed as keyword arguments: 'time_a, time_b'
+# o erro indica que quando está sendo utilizado / os argumento a esquerda são obrigatório serem passados apenas posicional e não nomeados
 
 
 
@@ -682,6 +713,28 @@ apresentar_jogador(**jogador2)
 
 # %%
 # Exercício 19 – Parâmetros somente nomeados com *
+
+def criar_jogador(nome: str,*,posicao: str,numero: int,titular: bool = False) -> str:
+    """
+        Cria cadastro de jogadores:
+    Args:
+        nome: Nome do jogador
+        *   : tudo direita do * é somente nomeado
+        posicao: posição do jogador
+        numero: Numero da camisa do jogador
+        titular: Resposta booleana diz se o jogador é titular : sim ou não (True ou False)
+    """
+    return(f"{nome} x {posicao} - {numero} - {titular}")
+
+jogador1 = criar_jogador("Neymar", posicao="Atacante", numero=10) # ok
+jogador2 = criar_jogador("Marta", posicao="Atacante", numero=10, titular=True) # ok
+jogador3 = criar_jogador("Neymar", "Atacante", titular=True) # erro: 
+print(jogador1)
+print(jogador2)
+print(jogador3)
+
+# TypeError: criar_jogador() takes 1 positional argument but 2 positional arguments (and 1 keyword-only argument) were given
+# O (*) faz com que os argumentos (posicoes, numero e titular) sejam SOMENTE NOMEADOS obrigatóriamente ex: posicao="Atacante".
 
 
 
@@ -779,6 +832,75 @@ apresentar_jogador(**jogador2)
 
 # %%
 # Exercício 20 – Desafio final: trabalhando com todos os tipos de argumentos
+def registrar_jogo(
+mandante: str,
+visitante: str,
+/,
+competicao: str,
+*eventos: str,
+estadio: str,
+encerrado: bool = True,
+**informacoes
+) -> dict:   
+    """
+        Registra partida de futebol: 
+    Args
+        mandante: informa o nome do time mandante da partida.
+        visitante: informa o nome do time visitante da partida.
+        competicao: é informado qual nome da competição ou campeonato.
+        *eventos: armazena uma lista de eventos ocorridos na partida.
+        estadio: informa o nome do estádio onde a partida ocorrerá.
+        encerrado: retorna um sim ou não, se a partida está em andamento ou se foi encerrada.
+        informacoes: armazena todas as informações da partida, se houve falta, cartão amarelo, penaltis etc..
+        dict: retorna um dicionário.
+    """
+    return{"Mandante": mandante, "Visitante":visitante, 
+           "Competição":competicao, "Eventos":eventos, 
+           "Estádio":estadio, "Situação da partida":encerrado, 
+           "Informações adicionais":informacoes}    
+# Primeira chamada
+partida = registrar_jogo(
+    "Brasil"
+    ,"Argentina"
+    ,"Copa do Mundo"
+    ,"Gol do Brasil"
+    ,"Cartão Amarelo"
+    ,"Substituição"
+    ,estadio="Maracanã"
+    ,publico= 70000
+    ,transmissão="TV")
+print(partida)
+
+# Segunda chamada
+times = ["França", "Espanha"]
+dados = {"estadio": "Stade de France","publico": 65000,"transmissao": "Streaming"}
+partida2 = registrar_jogo(*times,"Amistoso", "Gol da França", "Gol da Espanha", **dados)
+print(partida2)
+
+# Ao final, escreva comentários identificando o papel de cada elemento da assinatura:
+
+# /              -> os argumentos que estiverem a esquerda serão obrigatóriamente usados como POSICIONAIS
+# *eventos       -> Recebe vários argumentos
+# estadio        -> é um parâmetro que por obrigação deverá ser nomeado ex: estadio="Maracanã"
+# encerrado=True -> retorna um sim ou não, se a partida está em andamento ou se foi encerrada.
+# **informacoes  -> Recebe vários argumentos nomeados e agrupa em um dicionário
+
+
+# Explique também a diferença entre:
+# *eventos --> na função está recebendo vários argumentos e agrupando numa (tupla)
+
+# na definição da função e:
+# *times --> desempacota a lista, espalhando cada elemento com argumentos posicionais
+
+# na chamada, assim como a diferença entre:
+# **informacoes --> recebe vários argumentos nomeados e agrupa em um dicionário
+
+# na definição e: 
+
+# **dados     --> desempacota o dicionário, espalhando cada chave=valor como argumentos nomeados.
+# na chamada. 
+
+
 
 
 
