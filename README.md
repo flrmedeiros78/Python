@@ -22,8 +22,6 @@ Python/
 
 Repositório de estudos práticos de Python, organizado por módulos que evoluem do básico (variáveis, tipos, erros) até estruturas de dados e funções, além de um projeto CRUD separado.
 
-Nota: não consegui acessar o conteúdo do repositório diretamente (o GitHub bloqueou o acesso automatizado e o repositório não apareceu nos resultados de busca — provavelmente é privado). Este README foi montado a partir da estrutura de pastas/arquivos da captura de tela que você enviou. Se quiser um README mais detalhado (com trechos de código, funções específicas, exemplos de saída), me envie o conteúdo dos .py (upload direto aqui no chat) que eu refino o documento.
-
 📁 Estrutura do repositório
 Python/
 ├── CRUD/                                   # Projeto prático de CRUD (Create, Read, Update, Delete)
