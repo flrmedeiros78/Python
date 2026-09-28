@@ -1,77 +1,54 @@
-# Estudos_python
-Linguagem paython pura desde o inicio
+# Estudos de Python e Engenharia de Dados
 
+Repositório com meus estudos práticos de Python, dos fundamentos até um projeto completo com API, banco de dados e Docker. Faz parte da minha transição para engenharia de dados moderna (ETL, automação e pipelines).
 
-Python/
-├── Exercicios/          ← seus notebooks (Mod-01, 02, 03...)
-│   ├── .venv/           ← aqui sim, use venv + pip
-│   ├── Mod-01-...py
-│   ├── Mod-02-...py
-│   └── ...
-│
-└── CRUD/                ← projeto "de verdade"
-    ├── BACKEND/
-    ├── pyproject.toml   ← Poetry gerencia tudo aqui
-    ├── .gitignore
-    └── ...
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-frontend-FF4B4B?logo=streamlit&logoColor=white)
 
+## Projetos
 
+| Pasta | O que é | Tecnologias |
+|-------|---------|-------------|
+| [**CRUD/**](CRUD/) | API REST de produtos com banco de dados e front-end, tudo em containers. Projeto principal do repositório. | FastAPI, PostgreSQL, SQLAlchemy, Pydantic, Streamlit, Docker Compose, Poetry |
+| [**Exercicios/**](Exercicios/) | Exercícios de fundamentos de Python, organizados por módulo. | Python |
 
+## Destaque: CRUD de Produtos
 
-    Treinamento Python — Exercícios e Fundamentos
+Aplicação completa para cadastrar, listar, buscar, atualizar e remover produtos:
 
-Repositório de estudos práticos de Python, organizado por módulos que evoluem do básico (variáveis, tipos, erros) até estruturas de dados e funções, além de um projeto CRUD separado.
+- **Backend:** API REST em FastAPI, com validação de dados (Pydantic) e persistência em PostgreSQL via SQLAlchemy.
+- **Front-end:** interface em Streamlit que consome a API.
+- **Infraestrutura:** Docker Compose para subir os serviços, e configuração por variáveis de ambiente (`.env`).
 
-📁 Estrutura do repositório
-Python/
-├── CRUD/                                   # Projeto prático de CRUD (Create, Read, Update, Delete)
-└── Exercicios/
-    ├── .gitignore
-    ├── Configuracoes.md
-    ├── Mod-01-Notebook_Exercicios_Fund.py
-    ├── Mod-02-Notebook_Exercicios_Tipos_Erros.py
-    ├── Mod-03-Notebook_Estrutura_dados.py
-    ├── Mod-04-1-Notebook_Funcoes_Procedimentos.py
-    ├── Mod-04-2-Notebook_Param_Args_Func_Unpa...py
-    ├── README.md
-    ├── teste.py
-    └── teste_00.py
-🎯 Objetivo do treinamento
+Arquitetura, endpoints, como executar e os problemas resolvidos durante o desenvolvimento estão no **[README do CRUD](CRUD/README.md)**.
 
-Consolidar a base da linguagem Python de forma incremental — cada módulo constrói em cima do anterior — para dar suporte à transição para engenharia de dados moderna (ETL, automação, scripts de tratamento de dados).
+## Exercícios de Python
 
-📚 Módulos e o que foi aprendido
-Mod-01 — Exercícios Fundamentais
-Sintaxe básica: variáveis, tipos primitivos (int, float, str, bool)
-Entrada e saída de dados (input(), print(), formatação de strings)
-Operadores aritméticos, relacionais e lógicos
-Por quê: é a base para tudo que vem depois — sem entender tipos e operadores, estruturas mais complexas (loops, funções) ficam difíceis de depurar.
-Mod-02 — Tipos e Erros
-Conversão entre tipos (int(), str(), float()) e os erros comuns causados por conversões inválidas
-Tratamento de exceções (try/except)
-Por quê: entender por que um erro acontece (e não só corrigi-lo) evita repetir o mesmo bug em scripts de produção — especialmente relevante para pipelines de dados, onde dados "sujos" quebram conversões de tipo.
-Mod-03 — Estrutura de Dados
-Listas, tuplas, dicionários e/ou sets
-Operações de manipulação (indexação, slicing, métodos nativos)
-Por quê: estruturas de dados são a base de qualquer transformação de dados (equivalente conceitual a registros/colunas em ETL).
-Mod-04-1 — Funções e Procedimentos
-Definição de funções (def), diferença entre função (retorna valor) e procedimento (executa uma ação)
-Escopo de variáveis (local vs. global)
-Por quê: modularizar código é o que torna scripts reutilizáveis — princípio direto de qualquer pipeline ETL bem escrito.
-Mod-04-2 — Parâmetros, Argumentos e Unpacking
-Parâmetros posicionais, nomeados e valores default
-*args e **kwargs
-Unpacking de listas/dicionários
-Por quê: entender *args/**kwargs é pré-requisito para ler bibliotecas de terceiros (pandas, boto3, etc.) cujas assinaturas de função dependem disso.
-Arquivos auxiliares
-teste.py / teste_00.py: scripts de teste/rascunho usados durante o estudo dos módulos acima
-Configuracoes.md: anotações de configuração do ambiente de estudo
-.gitignore: arquivos/pastas excluídos do versionamento
-🗂 Projeto CRUD
+Módulos que evoluem do básico até funções, cada um construindo sobre o anterior:
 
-Pasta separada com uma aplicação prática de CRUD, aplicando os conceitos dos módulos de Exercícios em um caso de uso mais próximo do "mundo real" (persistência e manipulação de registros).
+| Módulo | Assunto |
+|--------|---------|
+| Mod-01 | Fundamentos: variáveis, tipos, entrada e saída, operadores |
+| Mod-02 | Tipos e erros: conversões e tratamento de exceções (`try/except`) |
+| Mod-03 | Estruturas de dados: listas, tuplas, dicionários e sets |
+| Mod-04-1 | Funções e procedimentos, escopo de variáveis |
+| Mod-04-2 | Parâmetros, `*args`, `**kwargs` e unpacking |
 
-🚀 Próximos passos sugeridos
-Adicionar testes automatizados (pytest) aos módulos já feitos
-Documentar o projeto CRUD com seu próprio README (tecnologias usadas, como rodar)
-Seguir para módulos de manipulação de arquivos, POO (classes/objetos) e bibliotecas externas
+Detalhes e o porquê de cada módulo estão no [README de Exercicios](Exercicios/README.md).
+
+## Objetivo
+
+Consolidar a base da linguagem de forma incremental para dar suporte à transição para engenharia de dados: scripts de tratamento de dados, automação, ETL e, mais adiante, pipelines em nuvem.
+
+## Próximos passos
+
+- Testes automatizados com pytest nos módulos e no CRUD
+- Migrações de banco com Alembic no CRUD
+- Manipulação de arquivos, POO (classes e objetos) e bibliotecas externas
+
+## Autor
+
+**Fabio Medeiros** — [flrmedeiros78](https://github.com/flrmedeiros78)
